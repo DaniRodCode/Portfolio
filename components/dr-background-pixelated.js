@@ -1,6 +1,6 @@
 
-if (!customElements.get('dr-background-triangles')) 
-    window.customElements.define("dr-background-triangles", 
+if (!customElements.get('dr-background-pixelated')) 
+    window.customElements.define("dr-background-pixelated", 
     class extends HTMLElement {
 		
 	constructor() {
