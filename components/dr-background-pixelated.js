@@ -7,10 +7,16 @@ if (!customElements.get('dr-background-pixelated'))
 		super();
 		this.attachShadow({ mode: 'open' });	
         this.escala = 1;
+        this.framebuffer = false;
+        this.estado = false;
+        this.drawFunction = this.getAttribute("draw-function") || "scanline",
+        this.backgroundColor = this.getAttribute("background-color") || "black",
         this.screen = {
             width: this.getAttribute("width") || 100,
             height:false
         };
+
+
 	}
 
 	connectedCallback() {
@@ -52,25 +58,26 @@ if (!customElements.get('dr-background-pixelated'))
     ajustarTamano() {
         const size = this.canvas.getBoundingClientRect();
 
-        this.screen.height = this.screen.width / size.width * size.height;
+        this.screen.height = Math.floor(this.screen.width / size.width * size.height);
 
         this.canvas.width = this.screen.width;
         this.canvas.height = this.screen.height;
-
-        //this.context.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
         
         this.context = this.canvas.getContext("2d");
     }
 
 
     loop() {
-        this.dibujar();
+        this[this.drawFunction]();
         requestAnimationFrame(() => {this.loop()});
     }
 
 
+
+
+
     
-    dibujar() {              
+    randomNoise() {              
         const screen = this.screen;
 
         for (let i=0; i<screen.width; i++) {
@@ -92,6 +99,86 @@ if (!customElements.get('dr-background-pixelated'))
     }    
 
 
+
+
+
+    scanline() {
+        const screen = this.screen;
+
+        if (!this.estado) {
+            const fondo = this.context.createLinearGradient(0, 0, 0, screen.height);
+        
+            fondo.addColorStop(0,   "#355c7d");
+            fondo.addColorStop(0.5, "#6c5b7b");
+            fondo.addColorStop(1,   "#c06c84");
+    
+            this.estado = {
+                linea:0,
+                color:'#FFF1',
+                fondo,
+                highlight:false,
+            };
+        }
+
+        this.estado.linea++;
+            
+        if (this.estado.linea >= screen.height) {
+            this.estado.linea = 0;
+        }      
+
+        //this.clear(this.estado.fondo);
+        
+        if (this.estado.highlight) {
+            if (Math.random() < .1)
+                this.clear(this.estado.fondo,.5);
+            
+            this.estado.color = "#aaa1";
+            this.estado.linea = this.estado.highlight + Math.random()*6-4;
+        }
+        else {
+            this.clear(this.estado.fondo);
+
+            if (Math.random() < .1)
+            this.estado.linea = Math.random() * screen.height;          
+        }
+    
+        this.setLine(this.estado.linea + Math.random()*2-1, this.estado.color);
+    }
+
+    highlight(y){
+        this.clear(this.estado.fondo);
+
+        const size = this.canvas.getBoundingClientRect();
+        this.estado.highlight = y/size.height * this.screen.height;
+    }
+
+ 
+
+
+
+
+
+
+    clear(color, opacity = 1) {
+        //this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.context.globalAlpha = opacity;
+        this.context.fillStyle = color || this.backgroundColor;        
+        this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        this.context.globalAlpha = 1.0;
+    }
+    
+    
+    setPixel(x, y, color) {
+        this.context.fillStyle = color;        
+        this.context.fillRect(Math.round(x), Math.round(y), 1, 1);
+    }
+
+    setLine(y, color) {
+        this.context.fillStyle = color;        
+        this.context.fillRect(0, Math.round(y), this.screen.width, 1);
+    }
+    
+    
     randomColor() {
         return 'rgb('+
                 Math.floor(Math.random()*256)+','+
@@ -100,13 +187,12 @@ if (!customElements.get('dr-background-pixelated'))
     }
 
 
-    setPixel(x, y, color) {
-        this.context.fillStyle = color;        
-        this.context.fillRect(Math.round(x), Math.round(y), 1, 1);
-    }
-        
-        
-
+    randomGrayColor(min, max) {
+        let v = Math.min((min || 0) + Math.floor(Math.random()*256), max || 256);
+        return 'rgb('+ v +','+ v +','+ v + ')';
+    }    
 
 });
+
+
 

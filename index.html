@@ -4,27 +4,174 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script type="module" src="components/dr-background-pixelated.js"></script>
+	<script type="module" src="components/dr-shape.js"></script>
+    <script type="module" src="components/dr-menu-pf.js"></script>
+    <script type="module" src="components/dr-tabs.js"></script>
+    <script type="module" src="components/dr-icono.js"></script>
 
     <title>DaniRod!! · Portfolio</title>
 
     <style>
         html, body {
+            --color-fondo: #5c5f7b;
             margin: 0;
             padding: 0;
             height: 100%;
             width: 100%;
+            background: var(--color-fondo);
         }
 
-        dr-background-triangles {
+        .origen {
+            position:absolute;
+            top:0;
+            left:0;
+        }                
+
+        .maximo {
             width: 100%;
             height: 100%;
+        }
+
+        #contenido {
+            display:flex;
+        }
+
+        #fondo {
+            background: var(--color-fondo);
+        }
+
+        dr-background-pixelated {
+            padding: 6px;
+            width: calc(100% - 12px);
+            height: calc(100% - 12px);
+        }
+
+        #borde {
+            border: 6px solid var(--color-fondo);;
+            border-radius: 15px;
+            width: calc(100% - 12px);
+            height: calc(100% - 12px);
+            pointer-events: none;
+            box-shadow: inset 0px 0px 30px 3px var(--color-fondo);;
+        }
+
+        dr-menu-pf {
+            position: absolute;
+            top: 25px;
+            left: 30px;
+            width: 50%;
+            height: 100%;
         }        
+
+        dr-tabs {
+            position: absolute;
+            top: 100px;
+            right: 0px;
+            width:50%;
+            height: 100%;
+        }
+
+        dr-shape {
+            position: absolute;
+            top: 15px;
+            left: 10px;            
+            width: 200px;
+            height: 200px;
+            border: 1px solid red;
+        }
+
+
     </style>
 
 </head>
 
 <body>
-    <dr-background-pixelated width="150"></dr-background-pixelated>
+    <dr-background-pixelated width="100"></dr-background-pixelated>
+    <div id="contenido">
+        <dr-shape></dr-shape>
+        <dr-menu-pf></dr-menu-pf>
+        
+        <dr-tabs>
+            <style>
+                .tab        {   color: white;      }
+                .fila       {   display:flex;   flex-direction: row;}
+                .w30        {   width: 30%;            }                
+                .valor      {   width: 100%;           }
+                dr-icono    {   margin: 10px;  }
+
+            </style>
+
+            <div id="tabDatosPersonales" class="tab">
+                <div class="fila">
+                    <div class="w30">Nombre</div>
+                    <div class="valor">Daniel Rodríguez</div>
+                </div>
+                <div class="fila">
+                    <div class="w30">Residencia</div>
+                    <div class="valor">Córdoba</div>
+                </div>
+                <div class="fila">
+                    <div class="w30">Correo</div>
+                    <div class="valor">jdani.rodriguez@gmail.com</div>
+                </div>
+                <div class="fila">
+                    <div class="w30">Teléfono</div>
+                    <div class="valor">660 611 843</div>
+                </div>
+                <div class="fila">
+                    <dr-icono github white 30px href="https://github.com/DaniRodCode"></dr-icono>
+                    <dr-icono linkedin white 30px href="https://www.linkedin.com/in/jdanirodriguez"></dr-icono> 
+                    <dr-icono mail white 30px href="mailto:jdani.rodriguez@gmail.com"></dr-icono> 
+                    <dr-icono phone white 30px href="tel:+34660611843"></dr-icono> 
+                </div>
+            </div>
+
+            <div id="tabCV" class="tab">
+                <ul><li>
+                    Smurfit Westock<br>
+                    1999 - (actualidad)
+                </li>
+                <li>
+                    Universidad de Córdoba (CTI)<br>
+                    1999 - 2000
+                </li>
+            </div>
+
+        </dr-tabs>
+    </div>
+    <div id="borde" class="origen maximo"></div>
+
 </body>
+
+
+
+<script>
+    const menu = document.querySelector("dr-menu-pf");
+    const fondo = document.querySelector("dr-background-pixelated");
+    const tabs = document.querySelector("dr-tabs");
+
+	window.addEventListener("load", () => {
+        menu.crearOpcion("Datos personales", "tabDatosPersonales");
+        menu.crearOpcion("Currículum", "tabCV");
+        menu.crearOpcion("Cifras y Letras", "juego1");
+        menu.crearOpcion("Bingo", "juego2");
+        menu.crearOpcion("Fluyo", "juego3");
+        menu.crearOpcion("Laberinto", "juego3");
+
+        menu.addEventListener("opcionSeleccionada",(e) => {
+            tabs.mostrar(e.detail);
+        });
+
+        menu.addEventListener("mousedown",(e) => {
+            fondo.highlight(e.pageY);
+        });
+        
+        
+        tabs.mostrar("tabDatosPersonales");       
+	});
+    
+
+    
+</script>
 
 </html>
