@@ -1,0 +1,64 @@
+{
+  "proyectos": [
+
+    {    
+      "id": "Transpucor",
+      "titulo": "Transpucor",
+      "nombre": "Manual de marca",
+      "descripcion": "Desarrollo del manual de marca para Transpucor Distribución de Publicidad S.L.U., empresa líder en reparto manual de publicidad en Córdoba. El proyecto define una identidad visual sólida y reconocible, basada en el uso del rojo corporativo y un sistema gráfico donde la “t” actúa como símbolo principal. Se diseñó un imagotipo que refuerza el concepto de transporte y alcance. El trabajo incluye aplicaciones en papelería, vestuario y rotulación de vehículos, buscando transmitir profesionalidad, coherencia y posicionamiento como referente en el sector.",
+      "imagenPrincipal": "principal.jpg",
+      "galeria": [
+        "recurso3.jpg",
+        "recurso1.jpg",
+        "recurso2.jpg",
+        "recurso4.jpg"
+      ]
+    },
+
+    {    
+      "id": "Cecilia",
+      "titulo": "Cecilia",
+      "nombre": "Manual de marca",
+      "descripcion": "Desarrollo del manual de marca dedicada al asesoramiento creativo visual para clientes de perfil medio-alto. La identidad se construye a partir del nombre propio en forma de rúbrica, buscando una imagen única, elegante y altamente reconocible. Se plantea una evolución hacia una versión más minimalista basada en la inicial. La propuesta apuesta por el blanco y negro para reforzar la sobriedad. El proyecto incluye aplicaciones en papelería, etiquetas y packaging, orientadas a transmitir exclusividad y valor añadido.",
+      "imagenPrincipal": "principal.jpg",
+      "galeria": [
+        "recurso5.jpg",
+        "recurso1.jpg",
+        "recurso2.jpg",
+        "recurso3.jpg",
+        "recurso4.jpg"
+      ]
+    },
+
+    {    
+      "id": "cartonFest",
+      "titulo": "cartonFest",
+      "nombre": "Evento Luciérnagas (Córdoba)",
+      "descripcion": "Participación como responsable de la actividad “cartónFEST” en el evento Luciérnagas (Córdoba, 2023), encuentro cultural enfocado a la creación y colaboración artística. Diseño y dinamización de un taller abierto a todos los públicos centrado en la manipulación del cartón, incluyendo la construcción de estructuras, elementos decorativos, photocall y juegos. Aplicación de experiencia profesional en diseño de embalajes para fomentar la creatividad, el trabajo colaborativo y la interacción entre participantes.",
+      "imagenPrincipal": "cartonFest.png",
+      "galeria": [
+        "cartonFest1.jpg",
+        "cartonFest3.jpg",
+        "cartonFest4.jpg"
+      ]
+    },
+
+    {    
+      "id": "PatioBrewers",
+      "titulo": "PatioBrewers",
+      "nombre": "Manual de marca",
+      "descripcion": "Desarrollo de la imagen de marca para la cervecera artesanal Patrio Brewers, incluyendo la conceptualización visual, diseño de logotipo y definición de la identidad gráfica. Creación de la imagen para distintas variedades de producto, como “Mantra”, adaptando el lenguaje visual a cada estilo de cerveza. Trabajo enfocado en transmitir el carácter local y artesanal de la marca, asegurando coherencia estética en etiquetas y elementos promocionales.",
+      "imagenPrincipal": "PatioBrewers1.jpg",
+      "galeria": [
+        "PatioBrewers2.jpg",
+        "PatioBrewers3.jpg",
+        "PatioBrewers4.jpg",
+        "PatioBrewers5.jpg"
+      ]
+    }
+
+
+
+  ]
+
+}

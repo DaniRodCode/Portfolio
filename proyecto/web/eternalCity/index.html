@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset=utf-8>
+		<title>Roofs Labyrinth</title>
+		<style>
+			body { margin: 0; }
+			canvas { width: 100%; height: 100% }
+		</style>
+	</head>
+	<body>
+		<script src="js/three.min.js"></script>
+		<script src="js/physi.js"></script>
+		<script src="edificio.js"></script>
+		
+		<script>				
+
+			'use strict';
+		
+			Physijs.scripts.worker = 'js/physijs_worker.js';
+			Physijs.scripts.ammo = 'ammo.js';
+			
+			var edificiosVisibles = 150;
+			var edificiosVisiblesFisica = 10;			
+			var tamEdificio = 1;
+			var alturaEdificio = 5;
+			var separacionEdificios = .3;
+			var tamEdificioTotal = tamEdificio + separacionEdificios;
+			var edificioActual = 1;
+			var distanciaActual = edificioActual*tamEdificioTotal;
+			var distanciaSiguiente = 1*tamEdificioTotal;
+			var mapaCiudad = crearMapaCiudad(256);
+			var nEdificios = mapaCiudad[0].length;
+			var tamCiudad = nEdificios*tamEdificioTotal;
+
+			var scene = new Physijs.Scene;
+			//var scene = new THREE.Scene();
+			var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
+
+			var renderer = new THREE.WebGLRenderer();
+			renderer.setSize( window.innerWidth, window.innerHeight );
+			renderer.setClearColor( 0xffffff );
+			document.body.appendChild( renderer.domElement );
+
+			
+			// Crear luces
+			scene.add( new THREE.AmbientLight( 0xffffff, 0.3 ) );
+			var light = new THREE.DirectionalLight( 0xffffff, 0.35 );
+			light.position.set( 0, 8, 0 ).normalize();
+			scene.add( light );			
+
+			scene.fog = new THREE.FogExp2( 0xffffff, 0.07 );
+				
+			
+			crearCiudad3D();
+			crearCiudad3DFisica();
+			
+
+			var box_material = Physijs.createMaterial(
+				new THREE.MeshLambertMaterial({ color:0xff00ff }),
+				.4, // low friction
+				1 // high restitution
+			);
+			
+			var box = new Physijs.BoxMesh(
+				new THREE.CubeGeometry( .1, .1, .1 ),
+				box_material
+			);
+			box.position.set(.5,mapaCiudad[0][0],.5);
+			scene.add(box);
+
+
+				
+			
+			camera.position.set(distanciaActual,10,distanciaActual);
+			camera.lookAt(new THREE.Vector3( distanciaActual+8*tamEdificioTotal, 0,  distanciaActual+8*tamEdificioTotal));			
+			
+
+			var animate = function () {
+				scene.simulate(); // run physics
+				requestAnimationFrame( animate );
+				renderer.render(scene, camera);
+				camera.position.x += .1;
+				camera.position.z += .1;			
+				
+				if (camera.position.x > distanciaSiguiente) {
+					//console.log(distanciaActual+","+distanciaSiguiente+","+edificioActual);
+
+					distanciaActual = distanciaSiguiente;
+					edificioActual++;
+					distanciaSiguiente = edificioActual*tamEdificioTotal;
+										
+					//crearCiudadVisibleParcial(edificioActual);
+				}
+				
+				
+			};
+
+			animate();	
+			
+			
+		
+			
+		</script>
+	</body>
+</html>

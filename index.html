@@ -1,177 +1,239 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script type="module" src="components/dr-background-pixelated.js"></script>
-	<script type="module" src="components/dr-shape.js"></script>
-    <script type="module" src="components/dr-menu-pf.js"></script>
-    <script type="module" src="components/dr-tabs.js"></script>
-    <script type="module" src="components/dr-icono.js"></script>
-
-    <title>DaniRod!! · Portfolio</title>
-
-    <style>
-        html, body {
-            --color-fondo: #5c5f7b;
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            width: 100%;
-            background: var(--color-fondo);
-        }
-
-        .origen {
-            position:absolute;
-            top:0;
-            left:0;
-        }                
-
-        .maximo {
-            width: 100%;
-            height: 100%;
-        }
-
-        #contenido {
-            display:flex;
-        }
-
-        #fondo {
-            background: var(--color-fondo);
-        }
-
-        dr-background-pixelated {
-            padding: 6px;
-            width: calc(100% - 12px);
-            height: calc(100% - 12px);
-        }
-
-        #borde {
-            border: 6px solid var(--color-fondo);;
-            border-radius: 15px;
-            width: calc(100% - 12px);
-            height: calc(100% - 12px);
-            pointer-events: none;
-            box-shadow: inset 0px 0px 30px 3px var(--color-fondo);;
-        }
-
-        dr-menu-pf {
-            position: absolute;
-            top: 25px;
-            left: 30px;
-            width: 50%;
-            height: 100%;
-        }        
-
-        dr-tabs {
-            position: absolute;
-            top: 100px;
-            right: 0px;
-            width:50%;
-            height: 100%;
-        }
-
-        dr-shape {
-            position: absolute;
-            top: 15px;
-            left: 10px;            
-            width: 200px;
-            height: 200px;
-            border: 1px solid red;
-        }
-
-
-    </style>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daniel Rodríguez - Web Personal</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
+
 <body>
-    <dr-background-pixelated width="100"></dr-background-pixelated>
-    <div id="contenido">
-        <dr-shape></dr-shape>
-        <dr-menu-pf></dr-menu-pf>
-        
-        <dr-tabs>
-            <style>
-                .tab        {   color: white;      }
-                .fila       {   display:flex;   flex-direction: row;}
-                .w30        {   width: 30%;            }                
-                .valor      {   width: 100%;           }
-                dr-icono    {   margin: 10px;  }
 
-            </style>
+  <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" aria-hidden="true">
+    <mask id="logo-mask" maskUnits="objectBoundingBox" maskContentUnits="objectBoundingBox">
+      <g fill="white" transform="translate(.1 .01) scale(.0185)">
+        <path d="M40.8 49.3h3.1v3.1h-3.1v-3.1Zm-29-44.4v15.3c0 1-.2 1.9-.6 2.6-.4.7-.9 1.3-1.7 1.7-.7.4-1.6.6-2.6.6H0V0h7c1 0 1.9.2 2.6.6.7.4 1.3.9 1.7 1.7.4.7.6 1.6.6 2.7Zm-2.9-.1c0-.7-.2-1.2-.5-1.5-.3-.4-.8-.5-1.4-.5H2.9v19.6h4.2c.6 0 1.1-.2 1.4-.5.3-.4.5-.9.5-1.5V4.8Zm1.9 47.7-4.7-9.3H2.9v4.2H0V28.7h5.5c1.3 0 2.5.2 3.4.7.9.4 1.7 1.1 2.2 1.9s.7 1.9.7 3.1v2.9c0 1.2-.2 2.3-.7 3.2-.5.9-1.2 1.6-2.2 2l5.2 9.9h-3.3Zm-5.1-12c.7 0 1.2-.1 1.7-.4s.8-.6 1.1-1.1c.2-.5.4-1 .4-1.7v-2.6c0-.7-.1-1.3-.4-1.8s-.6-.9-1.1-1.2-1-.4-1.7-.4H2.8v9.1h2.9Zm32.7-28.4v35.4h-6.7c-.4 0-1.7 0-2.3-.3s-1.1-1-1.5-1.8c-.3-.8-.5-1.8-.5-2.9v-6.8c0-1.2.2-2.9.5-3.8.3-.8.8-1.5 1.5-1.9.6-.4 1.4-.7 2.3-.7h3.8V12.5c0-1-.2-1.8-.6-2.2-.4-.5-1-.7-1.9-.7h-2.6v15.5h-2.9V7.2h6.7c1.4 0 2.5.4 3.2 1.3s1.1 1.9 1.1 3.6Zm-2.9 20.5H33c-.8 0-1.4.3-1.8.8-.4.5-.7 1.3-.7 2.3v5.8c0 .9.2 1.6.7 2.1.4.5 1.1.7 1.8.7h2.5V32.6Zm5.4-28.3h2.9V1.4h-2.9v2.9Zm2.9 18.1V7.2h-2.9v17.9h2.9v-2.7Zm-2.9 6.8v18.2h2.9V29.2h-2.9ZM19.4 47.7c1.1 0 2.3-.2 3.1-.6.8-.4 1.3-1 1.8-1.8s.6-1.7.6-2.8v-8.2c0-1.1-.2-2-.6-2.8-.4-.8-1-1.3-1.8-1.8s-2-.6-3.1-.6-2.3.2-3.1.6c-.8.4-1.4 1-1.8 1.8-.4.8-.6 1.7-.6 2.8v8.1c0 1.1.2 2 .6 2.8.4.8 1 1.4 1.8 1.8.8.4 2 .6 3.1.6Zm0-2.8c-.7 0-1.6-.2-2-.6-.4-.4-.6-1-.6-1.8v-8.1c0-.8.2-1.3.6-1.8.4-.4 1.2-.6 1.9-.6s1.6.2 2 .6c.4.4.6 1 .6 1.8v8.1c0 .8-.2 1.4-.6 1.8-.4.4-1.2.6-2 .6ZM24.8 12v13.1h-6.3c-1.5 0-2.7-.2-3.4-1-.8-.8-1.1-2.1-1.1-3.8s.5-3.5 1.4-4.5c.9-1 2.3-1.5 4.1-1.5h2.6V12c0-.8-.2-1.5-.7-2s-1.1-.7-1.9-.7-1.3.2-1.7.7-.6 1.1-.6 2h-2.8c0-1.6.5-2.9 1.4-3.8s2.2-1.3 3.8-1.3 2.1.2 2.9.6c.8.4 1.4 1 1.8 1.7.4.8.6 1.7.6 2.8Zm-2.7 4.7h-2.6c-.9 0-1.7.3-2.1.9-.5.6-.7 1.5-.7 2.7s.2 1.6.6 2c.4.4 1 .6 1.8.6h3v-6.3Z"/>
+      </g>
+    </mask>
+  </svg>
+      
 
-            <div id="tabDatosPersonales" class="tab">
-                <div class="fila">
-                    <div class="w30">Nombre</div>
-                    <div class="valor">Daniel Rodríguez</div>
-                </div>
-                <div class="fila">
-                    <div class="w30">Residencia</div>
-                    <div class="valor">Córdoba</div>
-                </div>
-                <div class="fila">
-                    <div class="w30">Correo</div>
-                    <div class="valor">jdani.rodriguez@gmail.com</div>
-                </div>
-                <div class="fila">
-                    <div class="w30">Teléfono</div>
-                    <div class="valor">660 611 843</div>
-                </div>
-                <div class="fila">
-                    <dr-icono github white 30px href="https://github.com/DaniRodCode"></dr-icono>
-                    <dr-icono linkedin white 30px href="https://www.linkedin.com/in/jdanirodriguez"></dr-icono> 
-                    <dr-icono mail white 30px href="mailto:jdani.rodriguez@gmail.com"></dr-icono> 
-                    <dr-icono phone white 30px href="tel:+34660611843"></dr-icono> 
-                </div>
-            </div>
 
-            <div id="tabCV" class="tab">
-                <ul><li>
-                    Smurfit Westock<br>
-                    1999 - (actualidad)
-                </li>
-                <li>
-                    Universidad de Córdoba (CTI)<br>
-                    1999 - 2000
-                </li>
-            </div>
-
-        </dr-tabs>
+  <div id="presentacion" class="columna">
+    <div id="nombre">
+      <div id="fondo"></div>
     </div>
-    <div id="borde" class="origen maximo"></div>
 
+
+    <div id="redes" class="oculto">
+      <a href="tel:+34660611843" target="_blank" title="Llámame por teléfono"><img src="img/phone.svg"></a>
+      <a href="mailto:jdani.rodriguez@gmail.com" target="_blank" title="Envíame un correo"><img src="img/mail.svg" ></a>
+      <a href="https://github.com/DaniRodCode" target="_blank" title="Visita mi repo"><img src="img/github.svg" ></a>
+      <a href="https://www.linkedin.com/in/jdanirodriguez" target="_blank" title="Visita mi perfil"><img src="img/linkedin.svg" ></a>        
+      <a href="docs/DaniRod_cv.pdf" target="_blank" title="Mira mi curriculum"><img src="img/Curriculum.svg" ></a>        
+    </div>      
+
+  </div>
+  
+
+  <main>
+
+    <section>
+      <h2>Trabajos realizados</h2>
+
+      <div class="columnas-2">
+        <ul>
+          <li>
+              <strong>Branding</strong>
+              <ul>
+                <li><a href="proyecto/?id=Transpucor">Transpucor</a></li>
+                <li><a href="proyecto/?id=Cecilia">Cecilia</a></li>
+                <li><a href="proyecto/?id=PatioBrewers">Patio Brewers</a></li>
+              </ul>            
+          </li>
+
+          <li>
+            <strong>Otros</strong>
+            <ul>
+              <li><a href="proyecto/?id=cartonFest">cartonFest</a></li>
+              <li><a href="https://www.red-dot.org/ko/project/strong-grip-14264" target="_blank">Premio Red Dot Awards 2016 (Retail Packaging)</a></li>
+            </ul>            
+          </li>
+        </ul>
+
+        <ul>
+          <li>
+            <strong>Web</strong>
+            <ul>
+              <li><a href="https://danirodcode.github.io/CifrasyLetras/" target="_blank">Cifras y Letras</a></li>
+              <li><a href="proyecto/web/BingoLive/" target="_blank">Bingo Live</a></li>
+              <li><a href="proyecto/web/petitDisain/" target="_blank">petitDisan</a></li>
+              <li><a href="proyecto/web/eternalCity/" target="_blank">eternalCity</a></li>
+              <li><a href="proyecto/web/TicTacBum/" target="_blank">Tic Tac Bum</a></li>
+              <li><a href="proyecto/web/Fluyo/" target="_blank">Fluyo</a></li>
+              <li><a href="proyecto/web/laberinto256/" target="_blank">Running Bits</a></li>
+              <li><a href="proyecto/web/PhotoMixer/" target="_blank">PhotoMixer</a></li>
+            </ul>        
+          </li>
+        </ul>
+      </div>
+
+      <ul>
+        <li>
+          <strong>Newcalc</strong>
+          Aplicación web desarrollada en PHP, JavaScript, y SQL para
+          el cálculo y gestión de embalajes. Permite generar informes, cálculos
+          de materiales y control de versiones.
+          <a class="enlace-boton" href="">Saber mas 🡢</a>
+        </li>
+      </ul>
+        
+      </ul>
+  </section>
+
+
+  <section>
+    <h2>Sobre mí</h2>
+    <h3><img src="img/smiley.svg">¡Hola! Soy Dani y mi camino como desarrollador no es nada tradicional.</h3>
+
+    <ul>
+
+      <li>
+        <strong>Inicios</strong>Estudiando <b>I.T. Informática de Sistemas en Córdoba</b>
+        empecé a trabajar como diseñador en una multinacional del sector del embalaje.
+        <br><b>¿El resultado?</b> Creé una aplicación que hoy da servicio a 14 fábricas en España,
+          Portugal y Marruecos.
+      </li>
+      
+      <li>
+        <strong>Ahora</strong>Desde 2021 me dedico en exclusiva a este desarrollo, 
+        combinando mis experiencia en procesos de fabricación, diseño y programación. 
+        Por el camino he formado a más de <b>600 personas en 3 países</b>.
+      </li>
+      
+      <li>
+        <strong>Actitud</strong>Me encanta resolver problemas reales y acelerar 
+        procesos con tecnología. Programo desde los 12 años y disfruto cada día 
+        aprendiendo y trabajando en equipo.
+      </li>
+
+    </ul>
+        
+  </section>
+      
+      
+      
+      
+      
+    <section>
+      <h2>Experiencia laboral</h2>
+      <h3>
+        Desde diseñar packaging hasta desarrollar el software que lo gestiona: 
+        más de dos décadas combinando creatividad y tecnología en la misma industria.
+      </h3>
+
+      <ul class="linea-tiempo">
+        <li>
+          <strong>Smurfit Westrock</strong>2021 - Actualidad
+          <ul>
+            <li>Desarrollo de software <small>(js, php, sql)</small></li>
+            <li>Formación <small>(600 usuarios/3 paises)</small></li>
+            <li>Gestión de incidencias</li>
+          </ul>            
+        </li>
+
+        <li>
+          <strong>Smurfit Westrock</strong>1999 - 2021
+          <ul>
+            <li>Diseño gráfico <small>(Illustrator / Photoshop)</small></li>
+            <li>Diseño de packaging <small>(ArtiosCad)</small></li>
+            <li>Proyectos de innovación</li>
+          </ul>
+        </li>
+
+
+      </ul>        
+
+    </section>
+
+
+
+
+
+    <section>
+      <h2>Formación</h2>
+
+      <ul>
+        <li>
+          <strong>I.T. Informática de Sistemas</strong>
+          Universidad de Córdoba <small> (1996 - 2000)
+        </li>
+
+        <li>
+          <strong>Inglés B1</strong>
+          Universidad de Loyola <small> (2010)</small>
+        </li>
+  
+        <li>
+          <strong>Otros</strong>
+          <ul class="marco columnas-3 vga-bg">
+            <li>PHP</li>
+            <li>SQL</li>
+            <li>JavaScript</li>
+            <li>Illustrator</li>     
+            <li>Photoshop</li>         
+            <li>ArtiosCAD</li>  
+            <li>Godot</li>       
+            <li>Git</li>       
+            <li></li>       
+          </ul>
+          
+        </li>
+      </ul>
+    </section>
+
+
+
+
+
+
+  <footer>
+
+    <div class="footer-links">
+      <a href="tel:+34660611843" target="_blank" title="Llámame por teléfono">
+        660 611 843
+      </a>
+      <a href="mailto:jdani.rodriguez@gmail.com" target="_blank" title="Envíame un correo">
+        jdani.rodriguez@gmail.com
+      </a>
+      <a href="https://github.com/DaniRodCode" target="_blank" title="Visita mi repo">
+        github
+      </a>
+      <a href="https://www.linkedin.com/in/jdanirodriguez" target="_blank" title="Visita mi perfil">
+        linkedin
+      </a>        
+      <a href="docs/DaniRod_cv.pdf" target="_blank" title="Visita mi perfil">
+        curriculum
+      </a>        
+    </div>  
+
+    <div class="footer-copy">
+      © 2025 Dani Rod!
+    </div>
+
+  </footer>
+
+
+
+
+</main>
+
+
+
+
+
+
+  <script src="script.js"></script>
 </body>
-
-
-
-<script>
-    const menu = document.querySelector("dr-menu-pf");
-    const fondo = document.querySelector("dr-background-pixelated");
-    const tabs = document.querySelector("dr-tabs");
-
-	window.addEventListener("load", () => {
-        menu.crearOpcion("Datos personales", "tabDatosPersonales");
-        menu.crearOpcion("Currículum", "tabCV");
-        menu.crearOpcion("Cifras y Letras", "juego1");
-        menu.crearOpcion("Bingo", "juego2");
-        menu.crearOpcion("Fluyo", "juego3");
-        menu.crearOpcion("Laberinto", "juego3");
-
-        menu.addEventListener("opcionSeleccionada",(e) => {
-            tabs.mostrar(e.detail);
-        });
-
-        menu.addEventListener("mousedown",(e) => {
-            fondo.highlight(e.pageY);
-        });
-        
-        
-        tabs.mostrar("tabDatosPersonales");       
-	});
-    
-
-    
-</script>
-
 </html>

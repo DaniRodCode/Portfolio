@@ -1,0 +1,150 @@
+
+html { 
+	height: 100%; 
+	width: 100%; 
+	margin: 0;
+	padding: 0;
+}
+
+body { 
+	background: white;	
+	width: 100%;
+	height: 100%;
+	margin: 0;
+}
+
+	
+#contenedor {
+	text-align: center;
+	background: orange;
+	height: 100%;
+	width: 100%;
+	margin: 0 auto;
+	min-width:500px;
+}
+
+#centrador {
+	float: left;
+	height: 50%;
+	width: 100%;
+}
+
+#titulo{
+	width:100%;
+	height: 100px;
+	background: lightgray;	
+	clear:both;
+	margin: 0px;
+	font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+    color: #343434;
+    font-size: 50px;
+	line-height: 100px;		
+}
+
+#titulo:hover {
+	background: white;
+}
+
+
+#botonera {
+	width:100%;
+	background:gray;
+    color: white;
+	font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;	
+    font-size: 20px;
+	line-height: 30px;	
+	display:none;
+	height:30px;
+}
+
+
+#mensaje {
+	width: auto;
+}
+
+#mensaje:hover {
+	background:black;
+}
+
+
+#sonido {
+	background:gray;
+	float:right;
+	padding: 0 10px 0 10px;
+	border-left:3px solid lightgrey;
+}
+
+#sonido:hover {
+	background:black;
+}
+
+
+#main {
+	width: 100%;
+	background: orange;
+	clear: both;
+	display: none;
+	text-align:center;
+}
+
+#bolaActual {
+    background-image: url('images/bola.gif');
+    background-repeat: no-repeat;
+    background-position: center center;	
+	background-size: contain;
+	display:inline-block;
+	font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;	
+	color:orange;
+	vertical-align:top;
+	margin-right:15px;
+	margin-top:10px;
+}
+
+
+
+#tableroBolas {
+	text-align: center;
+	display:inline-block;
+	vertical-align:top;	
+	margin-left:15px;	
+	margin-top:10px;
+}
+
+.bola {
+    background-image: url('images/bola.gif');
+    background-repeat: no-repeat;
+    background-position: center center;	
+	background-size: contain;
+	margin:2px;
+	font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;	
+	color:orange;
+	display:inline-block;
+	text-align: center;
+	opacity: 0.3;
+}
+
+.encendida {
+	opacity: 1.0;
+	color: gray;
+}
+
+.ultima {
+	color:black;
+}
+
+#decena {
+}
+
+#piePagina {
+	width: 100%;
+	clear:both;
+	height:50px;	
+    background-image: url('images/DaniRod.svg');
+    background-repeat: no-repeat;
+    background-position: bottom right;	
+	background-size: contain;
+	opacity: 0.3;
+    position:absolute;
+	bottom:10px;	
+	right: 10px;
+}

@@ -1,0 +1,346 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="./PhotoMixer.css">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div id="titulo"><a href="mailto:jdani.rodriguez@gmail.com">PhotoMixer</a></div>
+
+<div id="parametros">
+	<div id="parametro0" class="parametro">	
+		<label>Estilo:</label>
+		<select id="estilo" name="estilo" onChange="javascript:generarImagen();">
+		  <option value=0 selected>columnas</option>
+		  <option value=1 >columnas_Alternas</option>
+		  <option value=2 >columnas_Escaladas</option>
+		  <option value=3 >filas</option>
+		  <option value=4 >filas_Alternas</option>
+		  <option value=5 >filas_Escaladas</option>
+		  <option value=6 >mosaico</option>
+		</select>
+	</div>
+
+	<div id="parametro1" class="parametro">
+		<label>Divisiones:</label>
+		<input type="range" id="divisiones" name="divisiones" min="1" max="100" value="10" onChange="javascript:generarImagen();">
+	</div>
+	
+	<div id="parametro2" class="parametro">
+		<label>Predefinidas:</label>
+		<select id="coleccionImagenes" onChange="javascript:cambiarImagenes();">
+			<option value=0 >Test 2 colores</option>
+			<option value=1 >Test 3 colores</option>
+			<option value=2 >Test 4 colores</option>
+			<option value=3 >Orlando Bloom fotomaton</option>
+			<option value=4 >Lincoln</option>
+			<option value=5 >Pareja mujeres fotomaton</option>
+			<option value=6 >Teniente</option>
+			<option value=7 >Mer&Leti</option>			
+		</select>
+	</div>
+		 
+	<div id="parametro3" class="parametro">
+		<label>Urls:</label>
+		<input type="text" id="imagen0" name="imagen0" value="">
+		<input type="text" id="imagen1" name="imagen1" value="">
+		<input type="text" id="imagen2" name="imagen2" value="">
+		<input type="text" id="imagen3" name="imagen3" value="">
+	</div>
+	<button id="boton" type="button" onClick="javascript:cargarImagenes();">Cargar</button>
+</div>
+
+<div id="resultado" class="parametro">
+	<canvas id="myCanvas">
+		Your browser does not support the canvas element.
+	</canvas>
+</div>
+
+<div id="footer"><a href="https://www.instagram.com/__dani_rod__/">Realizado por Dani Rod! - 2021</a></div>
+
+
+<script>
+
+var images = null;
+
+var colecciones = [
+	["./images/rojo.jpg","./images/verde.jpg"],
+	["./images/rojo.jpg","./images/verde.jpg","./images/azul.jpg"],
+	["./images/rojo.jpg","./images/verde.jpg","./images/azul.jpg","./images/violeta.jpg"],
+	["./images/foto_B_1.jpg","./images/foto_A_1.jpg"],
+	["./images/Lincoln_Cuadrada_1.jpg","./images/Lincoln_Cuadrada_2.jpg"],
+	["./images/Pareja_1.jpg","./images/Pareja_2.jpg"],
+	["./images/Teniente_1.jpg","./images/Teniente_2.jpg"],
+	["./images/MerLeti_1.jpg","./images/MerLeti_2.jpg"],
+]
+
+window.onresize = function(event) {
+	generarImagen();
+};
+
+
+cambiarImagenes();
+
+
+
+function cambiarImagenes() {
+	var coleccion = document.getElementById("coleccionImagenes").value;
+		
+	for (var i=0;i<4;i++)
+		document.getElementById("imagen"+i).value = colecciones[coleccion][i] || "";
+}
+	
+function cargarImagenes() {
+	var urls = new Array();
+	for (var i=0;i<4;i++) {
+		url = document.getElementById("imagen"+i).value;
+		if (url != "")
+			urls.push(url);
+	}
+
+	images = new ImageCollection(urls,generarImagen);	
+}
+	
+	
+function generarImagen(){
+	var canvas = document.getElementById("myCanvas");
+	var parametros = document.getElementById("parametros");
+    var divisiones = document.getElementById("divisiones").value;
+	var controlEstilo = document.getElementById("estilo");
+	var estilo = controlEstilo.value;
+	var funcion = "PhotoMixer_" + controlEstilo.options[controlEstilo.selectedIndex].text;
+	var imagenes = images.get();
+		
+	if (estilo == 6 && imagenes.length < 4) {
+		alert("Son necesarias 4 imágenes para hacer el mosaico");
+		return;
+	}
+		
+	ajustarCanvas(canvas,imagenes);
+
+    window[funcion](canvas, imagenes, divisiones);
+
+	proporcionImagen = canvas.width / canvas.height;
+	var ancho = window.innerWidth - 50;
+	var alto = window.innerHeight - parametros.clientHeight - 175;
+	
+	var anchoImagen = ancho;
+	var altoImagen = ancho/proporcionImagen;
+	
+	if (altoImagen > alto) {
+		var altoImagen = alto;	
+		var anchoImagen = alto*proporcionImagen;
+	}
+		
+	canvas.style.width = anchoImagen+"px";
+	canvas.style.height = altoImagen+"px";
+	
+}	
+
+
+function PhotoMixer_columnas(canvas, imagenes, nColumnas) {
+	var ctx = canvas.getContext("2d");	
+	
+	canvas.width = canvas.width*imagenes.length; //si no se multiplica por el nº de imagenes sale sin distorsionar
+	var altoImagenFinal = canvas.height;
+	var anchoImagenFinal = canvas.width;		
+	var anchoColumnaDestino = (anchoImagenFinal/nColumnas)/imagenes.length;
+
+	for (var i=0;i<nColumnas;i++) {
+		for (var j=0;j<imagenes.length;j++) {
+			var img = imagenes[j];
+			var anchoColumnaOrigen = img.width/nColumnas;
+			var sx = i*anchoColumnaOrigen;
+			var x = i*anchoColumnaDestino*imagenes.length + j*anchoColumnaDestino;
+			ctx.drawImage(img, sx, 0, anchoColumnaOrigen, img.height, x, 0, anchoColumnaDestino, altoImagenFinal);			
+		}
+	}
+
+}
+
+
+function PhotoMixer_columnas_Alternas(canvas, imagenes, nColumnas) {
+	var ctx = canvas.getContext("2d");	
+	
+	var altoImagenFinal = canvas.height;
+	var anchoImagenFinal = canvas.width;		
+	var anchoColumnaDestino = (anchoImagenFinal/nColumnas);
+
+	// dibujar las fotos
+	for (var i=0;i<nColumnas;i++) {
+		var img = imagenes[i%imagenes.length];
+		var anchoColumnaOrigen = img.width/nColumnas;
+		var sx = i*anchoColumnaOrigen;
+		var x = i*anchoColumnaDestino;
+		ctx.drawImage(img, sx, 0, anchoColumnaOrigen, img.height, x, 0, anchoColumnaDestino, altoImagenFinal);			
+	}	
+}
+
+
+function PhotoMixer_columnas_Escaladas(canvas, imagenes, nColumnas) {
+	var ctx = canvas.getContext("2d");	
+	
+	var altoImagenFinal = canvas.height;
+	var anchoImagenFinal = canvas.width;		
+	var anchoColumnaDestino = (anchoImagenFinal/nColumnas)/imagenes.length;
+
+	// dibujar las fotos
+	for (var i=0;i<nColumnas;i++) {
+		for (var j=0;j<imagenes.length;j++) {
+			var img = imagenes[j];
+			var anchoColumnaOrigen = img.width/nColumnas;
+			var sx = i*anchoColumnaOrigen;
+			var x = i*anchoColumnaDestino*imagenes.length + j*anchoColumnaDestino;
+			ctx.drawImage(img, sx, 0, anchoColumnaOrigen, img.height, x, 0, anchoColumnaDestino, altoImagenFinal);			
+		}
+	}
+
+}
+
+
+function PhotoMixer_filas(canvas, imagenes, nFilas) {
+	var ctx = canvas.getContext("2d");	
+	
+	canvas.height = canvas.height*imagenes.length;
+	var altoImagenFinal = canvas.height;
+	var anchoImagenFinal = canvas.width;		
+	var altoFilaDestino = (altoImagenFinal/nFilas)/imagenes.length;
+
+	// dibujar las fotos
+	for (var i=0;i<nFilas;i++) {
+		for (var j=0;j<imagenes.length;j++) {
+			var img = imagenes[j];
+			var altoFilaOrigen = img.height/nFilas;
+			var sy = i*altoFilaOrigen;
+			var y = i*altoFilaDestino*imagenes.length + j*altoFilaDestino;
+			ctx.drawImage(img, 0, sy, img.width, altoFilaOrigen, 0, y, anchoImagenFinal, altoFilaDestino);			
+		}
+	}
+}
+
+
+function PhotoMixer_filas_Alternas(canvas, imagenes, nFilas) {
+	var ctx = canvas.getContext("2d");	
+	
+	var altoImagenFinal = canvas.height;
+	var anchoImagenFinal = canvas.width;		
+	var altoFilaDestino = (altoImagenFinal/nFilas);
+
+	// dibujar las fotos
+	for (var i=0;i<nFilas;i++) {
+		var img = imagenes[i%imagenes.length];
+		var altoFilaOrigen = img.height/nFilas;
+		var sy = i*altoFilaOrigen;
+		var y = i*altoFilaDestino;
+		ctx.drawImage(img, 0, sy, img.width, altoFilaOrigen, 0, y, anchoImagenFinal, altoFilaDestino);			
+	}
+	
+}
+
+
+
+function PhotoMixer_filas_Escaladas(canvas, imagenes, nFilas) {
+	var ctx = canvas.getContext("2d");	
+	
+	var altoImagenFinal = canvas.height;
+	var anchoImagenFinal = canvas.width;		
+	var altoFilaDestino = (altoImagenFinal/nFilas)/imagenes.length;
+
+	// dibujar las fotos
+	for (var i=0;i<nFilas;i++) {
+		for (var j=0;j<imagenes.length;j++) {
+			var img = imagenes[j];
+			var altoFilaOrigen = img.height/nFilas;
+			var sy = i*altoFilaOrigen;
+			var y = i*altoFilaDestino*imagenes.length + j*altoFilaDestino;
+			ctx.drawImage(img, 0, sy, img.width, altoFilaOrigen, 0, y, anchoImagenFinal, altoFilaDestino);			
+		}
+	}
+}
+
+
+
+
+
+function PhotoMixer_mosaico(canvas, imagenes, divisiones) {
+	var ctx = canvas.getContext("2d");	
+	var offsetx = [0,1,0,1];
+	var offsety = [0,0,1,1];
+	
+	canvas.width = canvas.width*2; 
+	canvas.height = canvas.height*2;
+	var altoImagenFinal = canvas.height;
+	var anchoImagenFinal = canvas.width;		
+	var anchoColumnaDestino = (anchoImagenFinal/divisiones)/2;
+	var altoColumnaDestino = (altoImagenFinal/divisiones)/2;
+
+	for (var i=0;i<divisiones;i++) {
+		for (var j=0;j<divisiones;j++) {
+			for (var k=0;k<4;k++) {
+				var img = imagenes[k];
+				var anchoColumnaOrigen = img.width/divisiones;
+				var altoColumnaOrigen = img.height/divisiones;
+				var sx = i*anchoColumnaOrigen;
+				var sy = j*altoColumnaOrigen;
+				var x = i*anchoColumnaDestino*2 + offsetx[k]*anchoColumnaDestino;
+				var y = j*altoColumnaDestino*2 + offsety[k]*altoColumnaDestino;
+				ctx.drawImage(img, sx, sy, anchoColumnaOrigen, altoColumnaOrigen, x, y, anchoColumnaDestino, altoColumnaDestino);							
+			}
+		}
+	}
+
+}
+
+
+
+
+
+function ajustarCanvas(canvas, imagenes) {
+	var anchoImagenFinal = 999999;
+	var altoImagenFinal = 999999;
+	
+	// cambiar el canvas al tamaño de la imagen más pequeña
+	for (var i=0;i<imagenes.length;i++){
+		if (imagenes[i].width < anchoImagenFinal) anchoImagenFinal = imagenes[i].width;
+		if (imagenes[i].height < altoImagenFinal) altoImagenFinal = imagenes[i].height;
+	}
+	
+	canvas.width = anchoImagenFinal;
+	canvas.height = altoImagenFinal;	
+}
+
+
+function ImageCollection(list, callback){
+	var images = new Array();
+    var total = 0;
+	
+    for(var i = 0; i < list.length; i++){
+        var img = new Image();
+        images[i] = img;
+        img.onload = function(){
+            total++;
+            if (total == list.length)
+                callback && callback();
+        };
+        img.src = list[i];
+    }
+	
+    this.get = function(){return images;};
+	
+}
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>
+

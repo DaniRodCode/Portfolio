@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daniel Rod! - Proyecto</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+
+<dialog id="visor">
+  <img id="visorImg">
+</dialog>
+
+
+
+<body>
+
+  <div id="contenido">
+
+    <div id="cabecera">
+
+      <div id="logo">
+        <img src="../img/DaniRod.svg" alt="DaniRod!">
+      </div>
+
+      <div id="redes">
+        <a href="tel:+34660611843" target="_blank" title="Llámame por teléfono"><img src="../img/phone.svg"></a>
+        <a href="mailto:jdani.rodriguez@gmail.com" target="_blank" title="Envíame un correo"><img src="../img/mail.svg" ></a>
+        <a href="https://github.com/DaniRodCode" target="_blank" title="Visita mi repo"><img src="../img/github.svg" ></a>
+        <a href="https://www.linkedin.com/in/jdanirodriguez" target="_blank" title="Visita mi perfil"><img src="../img/linkedin.svg" ></a>        
+        <a href="../docs/DaniRod_cv.pdf" target="_blank" title="Mira mi curriculum"><img src="../img/Curriculum.svg" ></a>        
+      </div>      
+
+    </div>
+
+      
+    <h1><a href="../">Proyecto/<slot titulo></slot></a></h1>
+
+    <main class="oculto">
+      
+      <section id="principal">
+
+        <img id="imagenPrincipal">
+
+        <h2><slot nombre></slot></h2>
+
+        <p><slot descripcion></slot></p>
+        <div id="navegacion">
+          <a href="../"><div class="boton" title="Volver">↶</div></a>
+          <a href="javascript:siguienteProyecto()" title="Siguiente proyecto"><div class="boton">+</div></a>
+        </div>
+
+      </section>
+
+      <section id="galeria"></section>
+
+    </main>
+
+  </div>  
+
+  <footer>
+
+    <div class="footer-links">
+      <a href="tel:+34660611843" target="_blank" title="Llámame por teléfono">
+        660 611 843
+      </a>
+      <a href="mailto:jdani.rodriguez@gmail.com" target="_blank" title="Envíame un correo">
+        jdani.rodriguez@gmail.com
+      </a>
+      <a href="https://github.com/DaniRodCode" target="_blank" title="Visita mi repo">
+        github
+      </a>
+      <a href="https://www.linkedin.com/in/jdanirodriguez" target="_blank" title="Visita mi perfil">
+        linkedin
+      </a>  
+      <a href="../docs/DaniRod_cv.pdf" target="_blank" title="Visita mi perfil">
+        curriculum
+      </a>        
+    </div>  
+
+    <div class="footer-copy">
+      © 2025 Dani Rod!
+    </div>      
+  </footer>
+
+
+
+
+  <script src="proyecto.js"></script>
+</body>
+</html>

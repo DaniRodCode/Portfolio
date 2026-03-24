@@ -1,0 +1,186 @@
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Bingo Live v1.0</title>
+  <link rel="stylesheet" type="text/css" href="style.css" media="screen" />	 
+  <script src="jquery.js"></script>
+
+  <script type="text/javascript" src="mespeak/mespeak.js"></script>
+  <script type="text/javascript">
+  
+		var timeoutID;
+		var bolas;
+		var pausa=true;
+		var nBolas = 90;
+		var tiempoEntreBolas = 4000;
+		var ultimaBola = false;
+		var sonidoActivado = true;
+		var finPartida = false;
+		
+		$(document).ready(function() {	
+
+				$(window).bind("resize", function (e) { 
+					ajustarTexto();
+				});
+				 
+				$("#titulo").bind("mouseup", function (e) { 
+					$("#centrador").slideUp();
+					$("#botonera").slideDown();
+					$("#main").slideDown();
+					$(this).unbind(e);
+					iniciar();			
+					ajustarTexto();					
+				 });
+				 		
+				 
+				 $("#mensaje").bind("mouseup", function (e) { 
+					if (finPartida) {
+						iniciar();
+						$("#mensaje").html("Pausa");	
+						return;
+					}
+				 
+					if (pausa) {
+						$("#mensaje").html("Pausa");
+						comenzar();							
+					}
+					else {
+						$("#mensaje").html("Continuar");
+						pausar();
+					}
+				 });
+				 
+				$("#sonido").bind("mouseup", function (e) { 
+						if (sonidoActivado) $("#sonido").html("Sonido: off");
+						else $("#sonido").html("Sonido: on");
+						
+						sonidoActivado = !sonidoActivado;
+					 });
+				
+				
+				 iniciarSonido();
+			});			 
+		
+		function iniciar() {						 
+			crearBolas();
+			ocultarBolas();
+			comenzar();
+		}
+		
+		function crearBolas() {
+			bolas = new Array();
+			for (i=0;i<nBolas;i++)
+				bolas[i] = i;
+		}
+			
+		function comenzar() {
+			finPartida = false;
+			pausa = false;				 
+			timeoutID = window.setInterval(sacarBola, tiempoEntreBolas);
+		}
+		
+		function sacarBola() {		
+			if (pausa) return;
+			
+			if (bolas.length == 0) {
+				window.clearInterval(timeoutID);
+			    $("#mensaje").html("Se han sacado todas las bolas, pulsa para volver a empezar");
+				finPartida = true;
+					 
+				return;
+			}
+
+			var bola = obtenerNumeroBola();
+			mostrarBola(bola);				
+		}
+		
+		function obtenerNumeroBola() {
+			var indice = Math.floor(Math.random()*bolas.length);
+			return bolas.splice(indice,1);
+		}
+		
+		function mostrarBola(bola) {	
+			$("#bolaActual").show();
+			$("#bolaActual").html((parseInt(bola)+1).toString());
+			$("#bola"+bola).addClass("encendida");
+			$("#bola"+ultimaBola).removeClass("ultima");
+			$("#bola"+bola).addClass("ultima");		
+			ultimaBola = bola;							
+			
+			if (sonidoActivado) meSpeak.speak((parseInt(bola)+1).toString());
+		}
+
+		function ocultarBolas() {		
+			for (i=0;i<nBolas;i++)
+			    $("#bola"+i).removeClass("encendida");
+		}
+		
+		function pausar() {
+			pausa = true;
+			window.clearInterval(timeoutID);
+		}
+		
+		function iniciarSonido() {
+			meSpeak.loadConfig("mespeak/mespeak_config.json");
+			meSpeak.loadVoice("mespeak/voices/es.json");
+		}
+		
+		function ajustarTexto() {
+			var ancho = ($(window).width()-100)/2;
+            var alto =  ($(window).height()-140);
+			
+			if (ancho < 300) ancho = 300;
+			if (alto < 300) alto = 300;
+	
+			if (ancho < alto) alto=ancho;
+			else ancho = alto;
+
+			var anchoBola = (ancho-50)/10;
+			
+			$(".bola").width(anchoBola);
+			$(".bola").height(anchoBola);
+			$(".bola").css("font-size", Math.floor(anchoBola/2)+"px");
+			$(".bola").css("line-height",  anchoBola+"px");
+											
+			$("#bolaActual").width(ancho);
+			$("#bolaActual").height(alto-60);
+			$("#bolaActual").css("font-size", Math.floor((alto-60)/2)+"px");
+			$("#bolaActual").css("line-height",  (alto-60)+"px");
+
+			$("#tableroBolas").width(ancho);
+			$("#tableroBolas").height(alto);
+			
+		}
+
+
+		
+			
+	</script>		
+</head>
+	
+<body>
+
+<div id="contenedor">
+	<div id="centrador"></div>
+	<div id="titulo">Bingo Live v1.0</div>
+	<div id="botonera">
+		<div id="sonido">Sonido: on</div>
+		<div id="mensaje">Pausa</div>
+	</div>
+	<div id="main">	
+		<div id="bolaActual"></div>
+		<div id="tableroBolas">
+			<script language="javascript">    
+					for (i=0;i<nBolas;i++) {
+						if (!((i)%10)) document.write("<div id='decena'>");						
+						document.write("<div id='bola"+i+"' class='bola'>"+(i+1)+"</div>");												
+						if (!((i+1)%10))document.write("</div>");						
+						}
+				</script>
+		</div>
+	</div>
+	<div id="piePagina"></div>
+</div>   
+ 
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>TicTacBoum v0.3</title>
+  
+<STYLE type="text/css">
+	body, html {
+	  height: 100%;
+	  margin: 0;
+	  position:relative;
+	}
+
+  .pantalla {
+	width: 100%;
+    height: 100%; 	
+	position: absolute;	
+	top:0;
+	left:0;  
+	visibility: hidden;
+  }
+  
+  .borde {
+	border: 1px black solid;
+  }
+ 
+
+  #pantallaLogo {
+    background-color: orange;
+	image-rendering: pixelated;  
+	background-image: url('images/logo.gif');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 75%;	
+	visibility: visible;
+  }
+  
+  #pantallaLetras {
+	background: orange;
+	text-align: center;
+  }
+  
+  #elementoLetrasElegidas {
+	color: white;
+	font-size: 400px;
+	font-family: sans-serif;
+	position:relative;
+	top:50%;
+	margin-top: -200px;
+   }
+  
+  #pantallaFin {
+	image-rendering: pixelated;  
+	background-color: black;
+	background-image: url('images/explosion.gif');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 75%;	
+
+	transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    -webkit-transition: all .5s ease;
+    -o-transition: all .5s ease;	
+  }
+  
+  .zoom {
+	transform: scale(1.5);
+	-moz-transform: scale(1.5);
+	-webkit-transform: scale(1.5);
+	-o-transform: scale(1.5);
+	-ms-transform: scale(1.5);
+  }
+  
+  
+  </style>
+  
+  
+<script>
+	function main() {
+		console.log(arguments.callee.name);
+		pantallaLogo = document.querySelector("#pantallaLogo");
+		pantallaLetras = document.querySelector("#pantallaLetras");
+		elementoLetrasElegidas = document.querySelector("#elementoLetrasElegidas");
+		pantallaFin = document.querySelector("#pantallaFin");		
+				
+		pantallaLogo.onclick = empezarJuego;	
+		pantallaFin.onclick = reiniciarJuego;		
+	}
+
+
+	function crearLetrasInicio() {
+		console.log(arguments.callee.name);
+		letras = new Array();
+		var vocales = ["A","E","I","O","U"];
+		var consonantes = ["B","C","D","F","G","H","J","K","L","M","N","P","R","S","T","V","Y","Z"];	
+		
+		for (var i=0; i<consonantes.length; i++)
+			for (var j=0; j<vocales.length; j++)
+				letras.push(consonantes[i]+vocales[j]);
+		
+		return letras;
+	}
+
+	
+	
+	function elegirLetrasInicio() {
+		console.log(arguments.callee.name);
+		
+		if (letrasInicio.length == 0 ) 
+			letrasInicio = crearLetrasInicio();
+			
+		var nLetras = Math.floor(Math.random()*letrasInicio.length);
+	
+		return letrasInicio.splice(nLetras,1);		
+	}
+	
+	
+	
+	function elegirTiempoActual() {
+		console.log(arguments.callee.name);
+		
+		var variable = (Math.random()*tiempoVariable*2)-tiempoVariable;
+	
+		return tiempoFijo + variable;
+	}
+
+
+	function ocultarPantallaInicial(){
+		console.log(arguments.callee.name);
+
+		pantallaLogo.style.visibility = 'hidden';
+	}
+	
+	
+	function mostrarPantallaLetras() {
+		console.log(arguments.callee.name);
+		
+		elementoLetrasElegidas.innerHTML = letrasActuales;	
+		pantallaLetras.style.visibility = 'visible';	
+	}
+
+	
+	function iniciarTiempo() {
+		console.log(arguments.callee.name);
+
+		setTimeout(finTiempo, tiempoActual);		
+		sonidoTictac.play();
+	}
+
+	
+	function finTiempo() {
+		console.log(arguments.callee.name);
+
+		ocultarPantallaLetras();
+		mostrarPantallaFin();
+
+		sonidoBum.play();
+		sonidoTictac.pause();				
+	}
+	
+	
+	function ocultarPantallaLetras() {
+		console.log(arguments.callee.name);
+
+		pantallaLetras.style.visibility = 'hidden';
+	}
+	
+	
+	function mostrarPantallaFin() {
+		console.log(arguments.callee.name);
+
+		pantallaFin.style.visibility = 'visible';
+		pantallaFin.classList.add("zoom");		
+	}
+	
+	
+	function reiniciarJuego() {
+		console.log(arguments.callee.name);
+
+		ocultarPantallaFin();
+		mostrarPantallaInicial();
+	}
+	
+	
+	function ocultarPantallaFin() {
+		console.log(arguments.callee.name);
+
+		pantallaFin.style.visibility = 'hidden';
+		pantallaFin.classList.remove("zoom");				
+	}
+	
+	
+	function mostrarPantallaInicial() {
+		console.log(arguments.callee.name);
+
+		pantallaLogo.style.visibility = 'visible';
+	}
+	
+	
+	function empezarJuego() {
+		console.log(arguments.callee.name);
+
+		letrasActuales = elegirLetrasInicio();
+		tiempoActual = elegirTiempoActual();
+		
+		ocultarPantallaInicial();
+		mostrarPantallaLetras();
+		iniciarTiempo();							
+						
+		console.log("letras:"+letrasActuales);
+		console.log("tiempo:"+tiempoActual);
+	}
+
+	
+	var letrasInicio = new Array();
+	var letrasActuales;
+	var tiempoActual;
+	var tiempoFijo=10*1000; // 10 segundos
+	var tiempoVariable = 3*1000; // 3 segundos
+	var cronometro;
+	var sonidoTictac = new Audio('sounds/tictac.mp3');
+	sonidoTictac.loop = true;
+	var sonidoBum = new Audio('sounds/bum.mp3');
+		
+	var pantallaLogo;
+	var pantallaLetras;
+	var elementoLetrasElegidas;
+	var pantallaFin;
+	
+	window.onload = main;	
+
+</script>
+
+  
+</head>
+
+<body>
+  <div id="pantallaLogo" class="pantalla"></div>
+  <div id="pantallaLetras" class="pantalla">
+	<div id="elementoLetrasElegidas"></div>
+  </div>
+  <div id="pantallaFin" class="pantalla"></div>
+</body>
+</html>

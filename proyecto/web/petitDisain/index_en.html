@@ -1,0 +1,430 @@
+<HTML>
+<HEAD>
+<link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed:100,100i,200,200i,300,300i" rel="stylesheet">
+<link type="text/css" rel="stylesheet" href="lib/featherlight.min.css" />
+		
+	<STYLE type="text/css">
+		body { 
+			margin:0px; 		  
+			font-family: 'Fira Sans Extra Condensed', sans-serif;
+			width: 100%;
+			height: 100%;
+			font-weight: 200;
+			font-size: 25px;
+		}
+
+		a {
+			text-decoration: none;
+		}
+		
+		.seccion {
+			width:100%;
+			clear: both;
+			border-top: 1px solid white;			
+			opacity: 0.9;
+			text-align: center;
+			position: relative;		
+		}
+		
+		#seccion_Menu {background: white;		margin-top:600px;}
+		#seccion_Descripcion {background: #F64B7F; 	color:white;}		
+		#seccion_Trabajos {background: #CFDB00; 	color:#2B385D;}
+		#seccion_Curriculums {background: #00ADBB; 	}
+		#seccion_Logotipos {background: #90CCB1; 	}
+		#seccion_Otros {background: #C22821; 	}
+		#seccion_Pie {background: black;}
+
+
+		
+		@media all and (orientation: portrait) {
+			#logo {
+				position: fixed;
+				margin-left: -250px;
+				top: 70px;
+				left: 50%;
+			}
+			
+			#logo img{
+				position:absolute;
+				width:500px;		
+			}
+			
+		}
+	
+		@media all and (orientation: landscape) {
+			#logo {
+				position: fixed;
+				margin-left: -200px;
+				top: 50px;
+				left: 50%;
+			}
+			
+			#logo img{
+				position:absolute;
+				width:400px;		
+			}
+
+			#seccion_Menu {background: white;		margin-top:500px;}
+		}
+	
+
+		
+		
+		#mancha { 
+			-webkit-animation: rotacion 200s infinite ease-in-out, 
+							   rotacionhue 100s infinite ease-in-out,
+							   aparicion 1s linear;
+		}
+		
+		#lineas { 
+			-webkit-animation: rotacion 100s infinite linear,
+							   colorlineas 10s infinite ease-in-out,
+							   aparicion 10s linear;
+		}
+
+		#nombre { 
+			-webkit-animation: aparicion 5s ease-in-out;
+		}
+
+
+		@-webkit-keyframes rotacion {
+			  0% 	{ -webkit-transform: rotate(0deg);  	  }
+			  50%	{ -webkit-transform: rotate(360deg); 	  }
+			  100%	{ -webkit-transform: rotate(0deg);  	  }
+		}
+
+		@-webkit-keyframes rotacionhue {
+			  0% 	{ -webkit-filter: hue-rotate(0deg);  	  }
+			  50%	{ -webkit-filter: hue-rotate(360deg); 	  }
+			  100%	{ -webkit-filter: hue-rotate(0deg);  	  }
+		}
+		
+		@-webkit-keyframes aparicion {
+			  0% 	{ -webkit-filter: opacity(0%);   	  }
+			  100%	{ -webkit-filter: opacity(100%);	  }
+		}
+	
+		@-webkit-keyframes colorlineas {
+			  0% 	{ -webkit-filter: brightness(100%) invert(0%);  	  }
+			  40% 	{ -webkit-filter: brightness(100%) invert(0%);  	  }
+			  50%	{ -webkit-filter: brightness(0%) invert(100%); 	  }
+			  90% 	{ -webkit-filter: brightness(0%) invert(100%);  	  }
+			  100%	{ -webkit-filter: brightness(100%) invert(0%);  	  }
+		}
+
+		
+		
+		#menu {
+			width:100%;
+			text-align:center;
+			margin-bottom: 30px;
+			background: white;
+			opacity: .8;
+		}
+		
+		.opcion {
+			padding: 0 30 0 30;
+			display: inline-block;
+			color: gray;
+			font-size: 20px;
+			font-weight: 200;
+			opacity: 1;
+		}
+		
+		.opcion:hover {
+			background: grey;	
+			color: white;
+		}
+		
+
+		.columna {
+			aborder: 1px solid black;
+			width:45%;
+			display: inline-block;
+			vertical-align:top;
+			padding: 20px 0 40px 0;
+		}
+		
+		.izquierda {
+			width:40%;
+			text-align: left;
+		}
+
+		.derecha {		
+			width:50%;		
+			text-align: center;
+			padding: 20px 0 0px 0;
+
+		}
+		
+		.central {
+			text-align: center;
+			width: 90% !important;
+			aborder: 1px black solid;
+			clear: both;
+		}
+		
+		
+		.titulo {
+			margin-bottom: 10px;
+			font-size:50px;
+			color:white;
+			aborder: 1px solid black;
+			text-shadow: 1px 1px 8px #000000;
+		}
+		
+		.parrafo {
+			margin:0px 0 0px 20px;
+			font-style: italic;
+			float:left;
+			aborder: 1px solid black;
+		}
+		
+		.parrafo p {
+			font-weight: 100 !important;
+			font-style: italic;
+			font-size: 50px;
+			margin-top: 20px;
+			margin-bottom: 20px;
+			text-align: center;
+
+		}
+		
+		
+		.logoEnlace {
+			width: 75px;
+			height: 75px;
+			background-repeat: no-repeat;
+			background-size: cover;		 
+			margin-left: 30px;			
+			display: inline-block;
+		}
+		
+		.logoEnlace:hover {
+			-webkit-filter: invert(100%);  
+		}
+		
+		 #enlaceMail {background-image: url(images/logoMail.svg);}
+		 #enlaceFacebook {background-image: url(images/logoFacebook.svg);}
+		 #enlaceLinkedin {background-image: url(images/logoLinkedin.svg);}
+		 #enlaceInstagram {background-image: url(images/logoInstagram.svg);}
+
+		 
+		.imagen {
+			display: inline-block;
+			abox-shadow: 2px 2px 5px black;
+			margin-right:30px;
+			margin-bottom:40px;
+		}
+
+		.imagen img{
+			box-shadow: 2px 2px 5px black;
+		}
+
+		
+		.tituloImagen {
+			color: white;
+			font-size: 16px;
+			line-height: 22px;
+			height: 22px;
+			font-weight: 200;
+			top:10px;
+			position:relative;
+		}
+		
+
+		.cv img {
+			width: 180px;
+		}
+
+
+		.imagen:hover img{
+			box-shadow: 2px 2px 30px black;
+		}
+		
+		#seccion_Pie .columna{
+			aborder: 1px solid white;
+			width:20%;
+			display: inline-block;
+			vertical-align:top;
+			color: white;
+			font-size: 12px;
+		}
+		
+		#seccion_Pie .columna a{
+			display: block;
+			color: gray;
+			margin-top:5px;
+		}
+		
+		#seccion_Pie .columna a img{
+			height:20px;
+			margin-right: 5px;
+			vertical-align:middle;
+		}		
+	
+	</STYLE>
+	</HEAD>
+	
+<TITLE>petitDisain</TITLE>
+
+<body>
+		<DIV id="logo">
+			<IMG id="mancha" SRC ="images/petitDisain_0.png">
+			<IMG id="lineas" SRC ="images/petitDisain_1.png">
+			<IMG id="nombre" SRC ="images/petitDisain_2.png">		
+		</DIV>
+
+	
+	<DIV id="seccion_menu" class="seccion">
+		<div id="menu">
+			<a href="#seccion_Descripcion"><div class="opcion">What is petitDisain?</div></a>
+			<a href="#seccion_Trabajos"><div class="opcion">What do we do?</div></a>
+			<a href="#seccion_Curriculums"><div class="opcion">Curriculums</div></a>
+			<a href="#seccion_Logotipos"><div class="opcion">Logos</div></a>
+			<a href="#seccion_Otros"><div class="opcion">Others</div></a>			
+			<a href="index.html"><div class="opcion"><IMG SRC="images/banderaEspana.png"></div></a>			
+		</div>
+	</div>
+
+	<DIV id="seccion_Descripcion" class="seccion">
+		<div class="columna izquierda">
+			<div class="titulo">What is petitDisain?</div>
+			<div class="parrafo">We are a little company of graphic design. We love what we do and we make all kind of projects.</div>
+		</div>
+		<div class="columna derecha" style="margin-top:10px;">
+				<A HREF="mailto:petitDisain@gmail.com" target="_blank"><div id="enlaceMail" class="logoEnlace"></div></a>
+				<A HREF="https://www.facebook.com/petitDisain/" target="_blank"><div id="enlaceFacebook" class="logoEnlace"></div></a>
+				<A HREF="https://www.linkedin.com/in/petitdisain/" target="_blank"><div id="enlaceLinkedin" class="logoEnlace"></div></a>
+				<A HREF="https://www.instagram.com/petitdisain/" target="_blank"><div id="enlaceInstagram" class="logoEnlace"></div></a>
+		</div>
+
+	</div>
+
+	<DIV id="seccion_Trabajos" class="seccion">
+		<div class="columna izquierda">
+			<div class="titulo">What do we do?</div>
+			<div class="parrafo">We make all kind of jobs like:
+				<br><br>
+				In short, anything you need to be designed :)
+			</div>
+		</DIV>
+		<div class="columna derecha" style="text-align:left; margin-top:20px; margin-left:40px;">
+			<UL style="float:left; margin-right:40px;">
+				<LI>Curriculum design</li>
+				<LI>Brand equity</li>
+				<LI>Logos</li>
+				<LI>Editorial design</li>
+				<LI>Packaging</li>
+				<LI>Posters</li>
+			</UL>
+			<A HREF="images/anuncios/fotoAnuncio_1.jpg" data-featherlight="image"><div class="imagen"><IMG SRC="images/anuncios/fotoAnuncio_1_low.jpg"></div></a>
+		</div>	
+	</div>
+
+	<DIV id="seccion_Curriculums" class="seccion">
+		<div class="columna izquierda">
+			<div class="titulo">Customized curriculums</div>
+			<div class="parrafo">A curriculum is the first reference of a company about you.
+			<p style="acolor:white;">Give it the relevance that it deserves!</p>
+			Show your information in a clear and effective way to stand out.<br><br>
+			Choose a template, select your favourite colours and give us all the information about you, the rest is up to us.
+			</div>			
+		</div>
+		<div class="columna derecha" style="margin-top:20px;">	
+			<A HREF="images/cv/cv_marga1.jpg" data-featherlight="image"><div class="imagen cv"><IMG SRC="images/cv/cv_marga1_low.jpg"><div class="tituloImagen">estrella (pag. 1)</div></div></a>
+			<A HREF="images/cv/cv_marga2.jpg" data-featherlight="image"><div class="imagen cv"><IMG SRC="images/cv/cv_marga2_low.jpg"><div class="tituloImagen">estrella (pag. 2)</div></div></a>	
+			<A HREF="images/cv/cv_marga_mockup1.jpg" data-featherlight="image"><div class="imagen"><IMG SRC="images/cv/cv_marga_mockup1_low.jpg"></div></a>
+
+		</div>
+		<div class="columna central">
+			<A HREF="images/cv/cv_marga_mockup2.jpg" data-featherlight="image"><div class="imagen"><IMG SRC="images/cv/cv_marga_mockup2_low.jpg">></div></a>
+			<A HREF="images/cv/cv_marga_mockup3.jpg" data-featherlight="image"><div class="imagen"><IMG SRC="images/cv/cv_marga_mockup3_low.jpg"></div></a>
+			<A HREF="images/cv/cv_1.jpg" data-featherlight="image"><div class="imagen cv"><IMG SRC="images/cv/cv_1_low.jpg"><div class="tituloImagen">marinero</div></div></a>
+			<A HREF="images/cv/cv_2.jpg" data-featherlight="image"><div class="imagen cv"><IMG SRC="images/cv/cv_2_low.jpg"><div class="tituloImagen">abogado</div></div></a>
+			<A HREF="images/cv/cv_3.jpg" data-featherlight="image"><div class="imagen cv"><IMG SRC="images/cv/cv_3_low.jpg"><div class="tituloImagen">ecológico</div></div></a>
+			<A HREF="images/cv/cv_4.jpg" data-featherlight="image"><div class="imagen cv"><IMG SRC="images/cv/cv_4_low.jpg"><div class="tituloImagen">desierto</div></div></a>
+			<A HREF="images/cv/cv_5.jpg" data-featherlight="image"><div class="imagen cv"><IMG SRC="images/cv/cv_5_low.jpg"><div class="tituloImagen">bee</div></div></a>
+			<A HREF="images/cv/cv_6.jpg" data-featherlight="image"><div class="imagen cv"><IMG SRC="images/cv/cv_6_low.jpg"><div class="tituloImagen">claudy</div></div></a>
+			<A HREF="images/cv/cv_7.jpg" data-featherlight="image"><div class="imagen cv"><IMG SRC="images/cv/cv_7_low.jpg"><div class="tituloImagen">hielo</div></div></a>
+			<A HREF="images/cv/cv_8.jpg" data-featherlight="image"><div class="imagen cv"><IMG SRC="images/cv/cv_8_low.jpg"><div class="tituloImagen">córdoba</div></div></a>
+			<A HREF="images/cv/cv_9.jpg" data-featherlight="image"><div class="imagen cv"><IMG SRC="images/cv/cv_9_low.jpg"><div class="tituloImagen">farmacia</div></div></a>
+			<A HREF="images/cv/cv_10.jpg" data-featherlight="image"><div class="imagen cv"><IMG SRC="images/cv/cv_10_low.jpg"><div class="tituloImagen">carbonero</div></div></a>		
+		</div>
+	</div>
+
+	<DIV id="seccion_Logotipos" class="seccion">
+		<div class="columna izquierda">			
+			<div class="titulo">Logos</div>				
+			<div class="parrafo">We design not only logos but brand identities, including business cards, stationary, posters...
+			</div>				
+		</div>
+		<div class="columna derecha">
+			<A HREF="images/logos/logo_1.jpg" data-featherlight="image"><div class="imagen"><IMG SRC="images/logos/logo_1_low.jpg"></div></a>
+			<A HREF="images/logos/logo_2.jpg" data-featherlight="image"><div class="imagen"><IMG SRC="images/logos/logo_2_low.jpg"></div></a>
+		</div>
+		<div class="columna central">
+			<A HREF="images/logos/logo_3.jpg" data-featherlight="image"><div class="imagen"><IMG SRC="images/logos/logo_3_low.jpg"></div></a>
+			<A HREF="images/logos/logo_4.jpg" data-featherlight="image"><div class="imagen"><IMG SRC="images/logos/logo_4_low.jpg"></div></a>
+			<A HREF="images/logos/logo_5.jpg" data-featherlight="image"><div class="imagen"><IMG SRC="images/logos/logo_5_low.jpg"></div></a>
+			<A HREF="images/logos/logo_6.jpg" data-featherlight="image"><div class="imagen"><IMG SRC="images/logos/logo_6_low.jpg"></div></a>
+
+		</div>
+	</DIV>
+	
+	<DIV id="seccion_Otros" class="seccion">
+		<div class="columna izquierda">			
+			<div class="titulo">Others</div>				
+			<div class="parrafo">We love challenges, and don't set limits. Tell us what you need and we do the rest.<br>
+			</div>				
+		</div>
+		<div class="columna derecha">
+			<A HREF="images/otros/poster_1.jpg" data-featherlight="image"><div class="imagen"><IMG SRC="images/otros/poster_1_low.jpg"></div></a>
+		</div>
+		<div class="columna central">
+			<A HREF="images/otros/tarjetaVisita_1.jpg" data-featherlight="image"><div class="imagen"><IMG SRC="images/otros/tarjetaVisita_1_low.jpg"></div></a>
+			<A HREF="images/otros/triptico_2.jpg" data-featherlight="image"><div class="imagen"><IMG SRC="images/otros/triptico_2_low.jpg"></div></a>
+			<A HREF="images/otros/triptico_3.jpg" data-featherlight="image"><div class="imagen"><IMG SRC="images/otros/triptico_3_low.jpg"></div></a>
+			<A HREF="images/otros/tarjetaVisita_2.jpg" data-featherlight="image"><div class="imagen"><IMG SRC="images/otros/tarjetaVisita_2_low.jpg"></div></a>
+			<A HREF="images/otros/tarjetaVisita_3.jpg" data-featherlight="image"><div class="imagen"><IMG SRC="images/otros/tarjetaVisita_3_low.jpg"></div></a>
+			<A HREF="images/otros/tarjetaVisita_4.jpg" data-featherlight="image"><div class="imagen"><IMG SRC="images/otros/tarjetaVisita_4_low.jpg"></div></a>
+			<A HREF="images/otros/tarjetaVisita_5.jpg" data-featherlight="image"><div class="imagen"><IMG SRC="images/otros/tarjetaVisita_5_low.jpg"></div></a>
+			<A HREF="images/otros/triptico_1.jpg" data-featherlight="image"><div class="imagen"><IMG SRC="images/otros/triptico_1_low.jpg"></div></a>
+			<A HREF="images/manuales/manual_1.jpg" data-featherlight="image"><div class="imagen"><IMG SRC="images/manuales/manual_1_low.jpg"></div></a>
+			<A HREF="images/manuales/manual_2.jpg" data-featherlight="image"><div class="imagen"><IMG SRC="images/manuales/manual_2_low.jpg"></div></a>
+			<A HREF="images/manuales/manual_3.jpg" data-featherlight="image"><div class="imagen"><IMG SRC="images/manuales/manual_3_low.jpg"></div></a>
+		</div>
+	</div>
+	
+	<DIV id="seccion_Pie" class="seccion">
+		<div class="columna" align="left">
+			@petitDisain
+			<a href="#seccion_Descripcion">What is petitDisain?</a>
+			<a href="#seccion_Trabajos">What do we do?</a>
+			<a href="#seccion_Curriculums">Curriculums</a>
+			<a href="#seccion_Logotipos">Logos</a>
+			<a href="#seccion_Otros">Others</a>			
+		</div>	
+		<div class="columna" align="left" >
+			Contacto
+			<A HREF="mailto:petitDisain@gmail.com" target="_blank"><IMG SRC="images/logoMail.svg">petitDisain@gmail.com</a>
+			<A HREF="https://www.facebook.com/petitDisain/" target="_blank"><IMG SRC="images/logoFacebook.svg">@petitDisain</a>
+			<A HREF="https://www.linkedin.com/in/petitdisain/" target="_blank"><IMG SRC="images/logoLinkedin.svg">petitDisain</a>
+			<A HREF="https://www.instagram.com/petitdisain/" target="_blank"><IMG SRC="images/logoInstagram.svg">petitDisain</a>
+		</div>	
+		<div class="columna" align="right" width="20px">
+			Web designed by
+			<a href="mailto:petitDisain@gmail.com" target="_blank">petitDisain</a><br>
+			with the colaboration:
+			<A HREF="https://jquery.com/" target="_blank">jquery-1.7.0</a>
+			<A HREF="http://noelboss.github.io/featherlight/" target="_blank">featherlight</a>
+			<A HREF="https://notepad-plus-plus.org" target="_blank">Notepad++</a><br>
+			<a href="http://www.google.com/images?q=Cordoba" target="_blank">Córdoba (Spain)</a> 2017
+		</div>	
+	</div>	
+
+		<script src="lib/jquery-1.7.0.min.js"></script>
+		<script src="lib/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+		
+</BODY>
+</HTML>

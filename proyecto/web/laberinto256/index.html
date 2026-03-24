@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+
+	<head>
+		<link rel="shortcut icon" href="#" />
+		<title>Laberinto 256</title>
+		<style>
+			#juego {
+			}
+
+			#editor {
+			  font-size: 12px;
+			  font-family: sans-serif;
+			  position:absolute;
+			  left: 0px;
+			  top: 0px;
+			  visibility:hidden;
+			  background-color: white;
+			  opacity: .7;
+			  padding:15px;
+			  color: black;
+			  width:400px;
+			}
+
+			fieldset{
+			}
+
+			label {
+				padding: 3px 3px;
+				margin: 8px 0;
+			}			
+
+			input {
+				width: 40px;
+				margin: 2px;
+			}
+
+			select {
+				width:100px;
+				margin: 5px;
+			}
+			</style>
+	</head>
+	<body>
+		<script type="module" src="index.js"></script>
+		<div id="editor">
+			<H3>Editor</H3>
+			<fieldset>
+				<legend>Mapa</legend>
+				<label>Nombre</label>
+				<select style="width:180px" id="listaMapas" onchange="juego.efecto_cambiarPantalla([this.value]);"></select>
+				<button onclick="juego.editor.guardarMapa();">Guardar</button>	
+				<button onclick="alert(juego.mapa.generarCodigo());">Codigo</button>	
+				<label>tamaño</label>
+				<input type="number" id="filas" min="1" max="500" number=3 onchange="juego.editor.mapa.cambiarTamano(this.value, document.getElementById('columnas').value);"> x 
+				<input type="number" id="columnas" min="1" max="500" onchange="juego.editor.mapa.cambiarTamano(document.getElementById('filas').value, this.value);">
+		</fieldset>
+		<fieldset>
+				<legend>Celda</legend>
+				<label>altura</label><input type="number" id="altura" min="1" max="1000" onchange="juego.editor.cambiarAlturaCelda(this.value,true);">
+				<label>aspecto</label><select id="listaAspectos" onchange="juego.editor.cambiarAparienciaCelda(this.value);"></select>
+		</fieldset>
+		<fieldset>
+			<legend>Objetos</legend>
+			<select id="listaObjetosActuales" onchange="juego.editor.actualizarInterfazObjeto();" style="float:left;" size="15"></select>
+			<fieldset>
+				<legend>Objeto seleccionado</legend>
+				<select id="listaObjetos" onchange="juego.editor.actualizarObjeto();"></select>
+				<button id="limpiarObjeto" onclick="juego.editor.limpiarObjeto();">Limpiar</button>	
+				<button id="borrarObjeto" onclick="juego.editor.borrarObjeto();">Borrar</button>	
+				<label>posicion:</label>
+					<input type="number" id="X" onchange="juego.editor.cambiarPosicionObjeto();">
+					<input type="number" id="Y" onchange="juego.editor.cambiarPosicionObjeto();">
+					<input type="number" id="Z" onchange="juego.editor.cambiarPosicionObjeto();">
+			</fieldset><br>
+			<button id="anadirObjeto" onclick="juego.editor.anadirObjeto();">Añadir objeto</button><br>		
+			<div id="ayuda">
+				Shift + Cursores + '+/-': mueve la camara<br>
+				Alt + Cursores + '+/-': mueve el objeto actual <br>
+				Cursores + '+/-': mueve el cursor de celdas y cambia la altura<br>
+				Tecla insertar: añade un objeto nuevo<br>
+				Tecla suprimir: elimina el objeto seleccionado<br>
+				Tecla 'A': cambia el aspecto de la celda<br>
+				Tecla 'S': guardar el mapa actual<br>
+			</div>	
+			</fieldset>	
+		</div>	
+	</body>
+</html>
