@@ -3,6 +3,7 @@
   const nombre = document.getElementById("nombre"); 
   const fondo = document.getElementById("fondo");
   const redes = document.getElementById("redes");
+  const anosDesde2021 = document.getElementById("anosDesde2021");
   const main = document.getElementsByTagName("main")[0];
   const footer = document.getElementsByTagName("footer")[0];
   
@@ -22,6 +23,8 @@
   requestAnimationFrame(() => {
     nombre.style.opacity = 1;
     nombre.style.scale = 1;
+
+    anosDesde2021.innerHTML = new Date().getFullYear() - 2021;
   });
 
   setTimeout(crearMancha, 200);

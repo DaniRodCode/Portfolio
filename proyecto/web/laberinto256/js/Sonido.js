@@ -7,10 +7,18 @@ class Sonido {
 
     static init() {
         Sonido.pendienteCargar = 4;
-        loadScript('js/lib/scriptprocessor_player.min.js',Sonido.cargaFinalizada);
-        loadScript('js/lib/ym_tracer.js',Sonido.cargaFinalizada);
-        loadScript('js/lib/backend_ym.js',Sonido.cargaFinalizada);
-        loadScript('js/lib/jsfx.js',Sonido.cargaFinalizada);
+        loadScript('js/lib/scriptprocessor_player.min.js', () => {
+            loadScript('js/lib/ym_tracer.js', () => {
+                loadScript('js/lib/backend_ym.js', () => {
+                    loadScript('js/lib/jsfx.js', () => {
+                        Musica.init();
+                        Efectos.init();
+                        Sonido.ready = true;
+                    });
+                });
+            });
+        });
+       
     }
 
     static cargaFinalizada() {

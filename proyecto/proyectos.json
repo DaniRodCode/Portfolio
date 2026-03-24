@@ -55,7 +55,23 @@
         "PatioBrewers4.jpg",
         "PatioBrewers5.jpg"
       ]
+    },
+
+    {    
+      "id": "Newcalc",
+      "titulo": "Newcalc",
+      "nombre": "Desarrollo",
+      "descripcion": "Desarrollo de una aplicación web a medida orientada a la gestión y cálculo de soluciones de embalaje. Implementada con PHP, JavaScript, HTML, CSS y SQL, permite automatizar procesos, generar informes y mejorar la eficiencia operativa. Incluye control de versiones, estructura modular y librerías propias reutilizables. Diseñada para adaptarse a necesidades específicas del entorno empresarial, optimizando tiempos y reduciendo errores en tareas clave.<br><i>Tamaño actual: 65K líneas de codigo (35K php / 13K js)</i>",
+      "imagenPrincipal": "Newcalc6.jpg",
+      "galeria": [
+        "Newcalc1.jpg",
+        "Newcalc2.jpg",
+        "Newcalc3.jpg",
+        "Newcalc4.jpg",
+        "Newcalc5.jpg"
+      ]
     }
+
 
 
 

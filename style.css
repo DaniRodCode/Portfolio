@@ -54,6 +54,9 @@ a:hover {
   color: var(--color-texto-fuerte);
 }
 
+small {
+  color: var(--color-texto-debil);
+}
 
 
 svg[aria-hidden="true"] {

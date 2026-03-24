@@ -83,16 +83,21 @@ canvas {
 
 		
 
-#footer {
-	border-top: 1px solid gray;
-	padding: 0 10px 0 10px;
-	text-align: right;
-	line-height: 25px;
-	font-size: 12px;
-	margin-top: 20px;
-	color: gray;
-}
-
 a, a:link, a:visited, a:active{
 	text-decoration: none;
+}
+
+
+#piePagina {
+	width: 50px;
+	height:50px;	
+	clear:both;
+    background-image: url('images/DaniRod.svg');
+    background-repeat: no-repeat;
+    background-position: bottom right;	
+	background-size: contain;
+	opacity: 0.3;
+    position:absolute;
+	bottom:10px;	
+	right: 10px;
 }
